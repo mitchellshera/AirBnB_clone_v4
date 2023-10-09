@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo git_auto_push_script >> ../.gitignore
+list=`ls -rf ./*`
+for i in $list; do n=$(grep -oE "^|\.[a-z]{1,5}$" <<< $i) && sed -i '2s/" "/"  "/' $n && bn=$(basename -s "$n" $i) && git add $i && git commit -m "made a no-change contribution to $bn" && git push && sleep 15;done
